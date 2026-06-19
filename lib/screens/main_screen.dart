@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/widgets/main_mat.dart';
 import '../misc/colors.dart';
 import '../widgets/task.dart';
-import '../widgets/buttons/skip_btn.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,7 +8,6 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
-
 
 class _MainScreenState extends State<MainScreen> {
   List<TaskModel> tasks = [];
@@ -73,8 +70,6 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +80,11 @@ class _MainScreenState extends State<MainScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          for (var task in tasks) 
+          Task(task: TaskModel(taskName: "Test Task", startTime: TimeOfDay(hour: 1, minute: 0), endTime: TimeOfDay(hour: 2, minute: 0)),),
+          for (var task in tasks) ...[
             Task(task: task),
+            SizedBox(height: 12),
+          ],
         ],      
       ),
       floatingActionButton: FloatingActionButton(

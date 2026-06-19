@@ -26,15 +26,22 @@ class Task extends StatelessWidget {
         color: taskColor,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-
-          Text(task.taskName),
-          Text (
-            "${task.startTime.format(context)} - ${task.endTime.format(context)}"
-          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(task.taskName),
+              Text (
+                "${task.startTime.format(context)} - ${task.endTime.format(context)}"
+              ),
+            ],
+          ),   
+          Icon(Icons.check),
         ],
-      ),   
+      ),
+      
     );
   }
 }
