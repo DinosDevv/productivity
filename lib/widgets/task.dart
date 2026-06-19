@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import '../misc/colors.dart';
 
+class TaskModel {
+  final String taskName;
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
+
+  TaskModel({
+    required this.taskName,
+    required this.startTime,
+    required this.endTime,
+  });
+}
+
 class Task extends StatelessWidget {
-  const Task({super.key});
+  final TaskModel task;
+
+  const Task({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +28,11 @@ class Task extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text("Task Name"),
-          Text("00:00 - 12:00"),
+
+          Text(task.taskName),
+          Text (
+            "${task.startTime.format(context)} - ${task.endTime.format(context)}"
+          ),
         ],
       ),   
     );
