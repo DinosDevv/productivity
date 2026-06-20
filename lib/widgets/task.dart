@@ -11,6 +11,7 @@ class TaskModel {
     required this.startTime,
     required this.endTime,
   });
+
 }
 
 class Task extends StatelessWidget {

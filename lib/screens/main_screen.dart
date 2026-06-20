@@ -81,6 +81,7 @@ class _MainScreenState extends State<MainScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           Task(task: TaskModel(taskName: "Test Task", startTime: TimeOfDay(hour: 1, minute: 0), endTime: TimeOfDay(hour: 2, minute: 0)),),
+          SizedBox(height: 12),
           for (var task in tasks) ...[
             Task(task: task),
             SizedBox(height: 12),
