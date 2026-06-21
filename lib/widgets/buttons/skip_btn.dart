@@ -18,4 +18,4 @@ class _SkipBtnState extends State<SkipBtn> {
       child: Text('Skip & Add as Debt'),
     );
   }
-}
+} 
