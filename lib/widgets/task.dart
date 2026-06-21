@@ -5,11 +5,13 @@ class TaskModel {
   final String taskName;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
+  final bool isDone;
 
   TaskModel({
     required this.taskName,
     required this.startTime,
     required this.endTime,
+    this.isDone = false,
   });
 }
 
@@ -38,7 +40,7 @@ class Task extends StatelessWidget {
               ),
             ],
           ),   
-          Icon(Icons.check),
+          if(task.isDone) Icon(Icons.check_box_outlined) else Icon(Icons.check_box_outline_blank),
         ],
       ),
       
