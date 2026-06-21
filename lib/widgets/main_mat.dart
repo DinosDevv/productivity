@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../screens/task_screen.dart';
 import '../misc/colors.dart';
+import '../screens/main_screen.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -21,7 +21,7 @@ class Main extends StatelessWidget {
           ),
         ),
       ),
-      home: const TaskScreen(),
+      home: const MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

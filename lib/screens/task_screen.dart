@@ -76,10 +76,6 @@ class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-        title: Text("Productivity App"),
-      ),
       body: ValueListenableBuilder(
         valueListenable: Hive.box<TaskModel>('tasks').listenable(), 
         builder: (context, box, _) {
