@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../misc/colors.dart';
 import '../widgets/task.dart';
+import '../misc/hive_functions.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,11 +11,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<TaskModel> tasks = [];
+
+  List tasks = HiveFunctions.getTasks();
 
   void addTask(TaskModel task) {
     setState(() {
-      tasks.add(task);
+      HiveFunctions.addTask(HiveFunctions.taskToMap(task));
     });
   }
   void showAddTaskDialog() async {
@@ -83,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
           Task(task: TaskModel(taskName: "Test Task", startTime: TimeOfDay(hour: 1, minute: 0), endTime: TimeOfDay(hour: 2, minute: 0)),),
           SizedBox(height: 12),
           for (var task in tasks) ...[
-            Task(task: task),
+            Task(task: HiveFunctions.mapToTask(task)),
             SizedBox(height: 12),
           ],
         ],      
