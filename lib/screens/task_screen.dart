@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import '../misc/colors.dart';
 import '../widgets/task.dart';
 import '../misc/hive_functions.dart';
 import '../misc/task_model.dart';
