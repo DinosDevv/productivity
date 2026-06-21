@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class HiveFunctions {
   static final taskBox = Hive.box('tasks');
 
-  static addTask(Map task) {
+  static void addTask(Map task) {
     taskBox.add(task);
   }
 
