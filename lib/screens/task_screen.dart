@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import '../misc/colors.dart';
 import '../widgets/task.dart';
 import '../misc/hive_functions.dart';
 import '../misc/task_model.dart';
+import '../misc/helpers.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class TaskScreen extends StatefulWidget {
+  const TaskScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<TaskScreen> createState() => _TaskScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _TaskScreenState extends State<TaskScreen> {
 
-  List tasks = HiveFunctions.getTasks();
 
-  void addTask(TaskModel task) {
-    setState(() {
-      HiveFunctions.addTask(HiveFunctions.taskToMap(task));
-    });
-  }
   void showAddTaskDialog() async {
     final titleController = TextEditingController();
     TimeOfDay? start;
@@ -60,10 +56,14 @@ class _MainScreenState extends State<MainScreen> {
             child: const Text("Cancel")
           ),
           TextButton(
-            onPressed : () {
+            onPressed : () {              
               if(start != null && end != null) {
-                TaskModel newTask = TaskModel(taskName: titleController.text, startTime: start!, endTime: end!);
-                addTask(newTask);
+                final newTask = TaskModel(
+                  taskName: titleController.text, 
+                  startTime: Helpers.toMinutes(start!), 
+                  endTime:Helpers.toMinutes(end!)
+                );
+                HiveFunctions.addTask(newTask);
               }
               Navigator.pop(context);
             },
@@ -80,16 +80,28 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: appBarColor,
         title: Text("Productivity App"),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Task(task: TaskModel(taskName: "Test Task", startTime: TimeOfDay(hour: 1, minute: 0), endTime: TimeOfDay(hour: 2, minute: 0)),),
-          SizedBox(height: 12),
-          for (var task in tasks) ...[
-            Task(task: HiveFunctions.mapToTask(task)),
-            SizedBox(height: 12),
-          ],
-        ],      
+      body: ValueListenableBuilder(
+        valueListenable: Hive.box<TaskModel>('tasks').listenable(), 
+        builder: (context, box, _) {
+          final tasks = box.values.toList();
+
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {
+              final task = tasks[index];
+
+              return Column(
+                children: [
+                  SizedBox(height: 12),
+                  Task(task: task),
+                ],
+              );
+            },
+            
+          );
+        },
+        
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

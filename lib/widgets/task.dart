@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../misc/colors.dart';
 import '../misc/task_model.dart';
+import '../misc/helpers.dart';
 
 class Task extends StatelessWidget {
   final TaskModel task;
@@ -23,7 +24,7 @@ class Task extends StatelessWidget {
             children: [
               Text(task.taskName),
               Text (
-                "${task.startTime.format(context)} - ${task.endTime.format(context)}"
+                "${Helpers.toTimeOfTheDay(task.startTime).format(context)} - ${Helpers.toTimeOfTheDay(task.endTime).format(context)}"
               ),
             ],
           ),   
