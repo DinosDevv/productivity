@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import '../misc/colors.dart';
-
-class TaskModel {
-  final String taskName;
-  final TimeOfDay startTime;
-  final TimeOfDay endTime;
-  final bool isDone;
-
-  TaskModel({
-    required this.taskName,
-    required this.startTime,
-    required this.endTime,
-    this.isDone = false,
-  });
-
-}
+import '../misc/task_model.dart';
 
 class Task extends StatelessWidget {
   final TaskModel task;

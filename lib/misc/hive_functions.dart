@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import '../widgets/task.dart';
 import 'package:flutter/material.dart';
+import '../misc/task_model.dart';
+
 
 class HiveFunctions {
   static final taskBox = Hive.box('tasks');
