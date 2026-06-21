@@ -13,6 +13,7 @@ class TaskModel {
     required this.endTime,
     this.isDone = false,
   });
+
 }
 
 class Task extends StatelessWidget {
