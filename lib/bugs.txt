@@ -1,5 +1,4 @@
-- If timer is 60 mins for a split second the widget shows 1:60:0 instead of 60:00
-- Timer count is not saved 
-- Navigating between screens through MainScreen requires minutes even when navigating somewhere other than the TodayScreen
+- Timer count is not saved: MAYBE ADD A TIMERCONTROLLER CLASS WHERE TIMER IS BEING USED OUTSIDE THE WIDGET
+- Navigating between screens through MainScreen requires minutes/task even when navigating somewhere other than the TodayScreen
 - Need to add Theme -> Delete misc/colors.dart
-- Timer goes below zero WTF!!
+- Timer should be tied to a Task so when the task is finished it automatically triggers the isDone boolean
