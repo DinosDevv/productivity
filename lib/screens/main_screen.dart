@@ -7,14 +7,22 @@ import 'today_screen.dart';
 import '../misc/colors.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+
+  final int index;
+  
+  // This is gonna be spaghetti code and I will probably need to fix it soon
+
+  final int minutes;
+
+  const MainScreen({super.key, required this.index, required this.minutes});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int currentPageIndex = 0;
+  late int currentPageIndex = widget.index;
+  late int minutes = widget.minutes;
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +60,14 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Stats',
           ),
           NavigationDestination(
-            icon: Badge(label: Text('2'), child: Icon(Icons.settings)),
+            icon: Icon(Icons.settings),
             label: 'Settings',
           ),
         ],
       ),
-      body: <Widget>[        
+      body:<Widget>[        
         TaskScreen(),
-        TodayScreen(),
+        TodayScreen(minutes: minutes),
         DebtScreen(),
         StatsScreen(),
         SettingsScreen(),

@@ -21,7 +21,7 @@ class Main extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainScreen(),
+      home: const MainScreen(index: 0, minutes: 0),
       debugShowCheckedModeBanner: false,
     );
   }

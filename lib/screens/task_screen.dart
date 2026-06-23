@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:productivity/screens/main_screen.dart';
 import '../widgets/task.dart';
 import '../misc/hive_functions.dart';
 import '../misc/task_model.dart';
@@ -89,7 +90,20 @@ class _TaskScreenState extends State<TaskScreen> {
               return Column(
                 children: [
                   SizedBox(height: 12),
-                  Task(task: task),
+                  Task(
+                    task: task, 
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => MainScreen(
+                            index: 1, 
+                            minutes: task.endTime - task.startTime,
+                          )
+                        )
+                      );
+                    },
+                  ),
                 ],
               );
             },

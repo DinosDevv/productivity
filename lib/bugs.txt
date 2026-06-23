@@ -1,0 +1,5 @@
+- If timer is 60 mins for a split second the widget shows 1:60:0 instead of 60:00
+- Timer count is not saved 
+- Navigating between screens through MainScreen requires minutes even when navigating somewhere other than the TodayScreen
+- Need to add Theme -> Delete misc/colors.dart
+- Timer goes below zero WTF!!
