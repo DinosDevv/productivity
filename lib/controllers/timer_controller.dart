@@ -8,7 +8,7 @@ class TimerController extends ChangeNotifier{
 
   TimerController({required this.task});
 
-  int remainingSeconds = 0;
+  int remainingSeconds = 0, startingSeconds = 0;
   Timer? timer;
   bool isPaused = false;
 
@@ -18,6 +18,7 @@ class TimerController extends ChangeNotifier{
     } else {
       remainingSeconds = (task.endTime - task.startTime)*60;
     }
+    startingSeconds = remainingSeconds;
   }
 
 
