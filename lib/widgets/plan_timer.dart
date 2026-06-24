@@ -17,7 +17,7 @@ class PlanTimer extends StatefulWidget {
 }
 
 class _PlanTimerState extends State<PlanTimer> {
-  late int seconds = widget.minutes*60;
+  late int timerSeconds = widget.minutes*60;
   Timer? timer;
 
 
@@ -29,7 +29,7 @@ class _PlanTimerState extends State<PlanTimer> {
       const Duration(seconds: 1),
       (_) {
         setState(() {
-          seconds--;
+          timerSeconds--;
         });
       },
     );
@@ -41,33 +41,30 @@ class _PlanTimerState extends State<PlanTimer> {
     super.dispose();
   }
 
-
-
-  
   @override
   Widget build(BuildContext context) {
-    int _hours, _minutes, _seconds;
+    int hours, minutes, seconds;
 
-    _hours = seconds ~/ 3600;
-    _minutes = seconds ~/ 60;
-    _seconds = seconds % 60;
+    hours = timerSeconds ~/ 3600;
+    minutes = (timerSeconds % 3600) ~/ 60;
+    seconds = timerSeconds % 60;
 
-    String _hoursTxt = _hours.toString(), _minutesTxt = _minutes.toString(), _secondsTxt = _seconds.toString();
+    String hoursTxt = hours.toString(), minutesTxt = minutes.toString(), secondsTxt = seconds.toString();
     
     // Make the text on the timer so that it shows properly 00:00:00 instead of 1:1:1 if hours/minutes/seconds < 9
 
-    if(_minutes < 9) {
-      _minutesTxt = '0$_minutes';
+    if(minutes < 9) {
+      minutesTxt = '0$minutes';
     }
-    if(_hours < 9) {
-      _hoursTxt = '0$_hours';
+    if(hours < 9) {
+      hoursTxt = '0$hours';
     }
-    if(_seconds < 9) {
-      _secondsTxt = '0$_seconds';
+    if(seconds < 9) {
+      secondsTxt = '0$seconds';
     }    
 
     return Text(
-      '$_hoursTxt:$_minutesTxt:$_secondsTxt',
+      '$hoursTxt:$minutesTxt:$secondsTxt',
       style: TextStyle(
         fontSize: 50,
       ),

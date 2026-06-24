@@ -2,3 +2,9 @@
 - Navigating between screens through MainScreen requires minutes/task even when navigating somewhere other than the TodayScreen
 - Need to add Theme -> Delete misc/colors.dart
 - Timer should be tied to a Task so when the task is finished it automatically triggers the isDone boolean
+- Submitting a task has issues:
+  - You can submit a task with a duration of 0 seconds
+  - You can submit a task with no name
+  
+- If endTime < startTime seconds are negative even though 4PM->12PM e.g is physically possible: MAYBE TAKE THE ABSOLUTE VALUE INSTEAD?
+
