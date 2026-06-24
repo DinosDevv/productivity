@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:productivity/controllers/timer_controller.dart';
 import 'package:productivity/screens/main_screen.dart';
 import '../widgets/task.dart';
 import '../misc/hive_functions.dart';
@@ -93,12 +94,16 @@ class _TaskScreenState extends State<TaskScreen> {
                   Task(
                     task: task, 
                     onPressed: () {
+                      TimerController timerController = TimerController(task: task);
+                      timerController.getRemainingSeconds();
+                      timerController.start();
+                      
                       Navigator.push(
                         context, 
                         MaterialPageRoute(
                           builder: (context) => MainScreen(
                             index: 1, 
-                            minutes: task.endTime - task.startTime,
+                            timerController: timerController,
                           )
                         )
                       );

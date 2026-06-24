@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productivity/controllers/timer_controller.dart';
 import 'task_screen.dart';
 import 'debt_screen.dart';
 import 'settings_screen.dart';
@@ -9,12 +10,12 @@ import '../misc/colors.dart';
 class MainScreen extends StatefulWidget {
 
   final int index;
-  
+  final TimerController timerController;
+
   // This is gonna be spaghetti code and I will probably need to fix it soon
 
-  final int minutes;
+  const MainScreen({super.key, required this.index, required this.timerController});
 
-  const MainScreen({super.key, required this.index, required this.minutes});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -22,7 +23,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late int currentPageIndex = widget.index;
-  late int minutes = widget.minutes;
+  late TimerController timerController = widget.timerController;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body:<Widget>[        
         TaskScreen(),
-        TodayScreen(minutes: minutes),
+        TodayScreen(timerController: timerController),
         DebtScreen(),
         StatsScreen(),
         SettingsScreen(),

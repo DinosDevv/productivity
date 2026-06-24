@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../misc/colors.dart';
 import '../screens/main_screen.dart';
+import '../controllers/timer_controller.dart';
+import '../misc/task_model.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +22,17 @@ class Main extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainScreen(index: 0, minutes: 0),
+      home: MainScreen(
+        index: 0, 
+        timerController: TimerController(
+          task: TaskModel(
+            taskName: '0',
+            startTime: 0,
+            endTime: 0
+          ),
+        ),
+
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
