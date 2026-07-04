@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../misc/colors.dart';
-import '../misc/task_model.dart';
-import '../misc/helpers.dart';
+import '../../../shared/UI/colors.dart';
+import '../task_model.dart';
+import '../../../misc/helpers.dart';
 
 class Task extends StatefulWidget {
   final TaskModel task;

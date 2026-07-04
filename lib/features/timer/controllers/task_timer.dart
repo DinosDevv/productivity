@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:productivity/misc/task_model.dart';
+import 'package:productivity/features/tasks/task_model.dart';
 
 class TimerController extends ChangeNotifier{
   TaskModel task;
@@ -31,7 +31,9 @@ class TimerController extends ChangeNotifier{
           print(remainingSeconds);
           remainingSeconds--;
           notifyListeners();
-        }
+        } else {
+          task.isDone = true;
+        }    
       } 
     );
   }

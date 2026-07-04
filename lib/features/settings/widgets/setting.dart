@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/misc/colors.dart';
+import 'package:productivity/shared/UI/colors.dart';
 
 class Setting extends StatelessWidget {
   final String _settingName;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/controllers/timer_controller.dart';
-import 'task_screen.dart';
-import 'debt_screen.dart';
+import 'package:productivity/features/timer/controllers/task_timer.dart';
+import '../features/tasks/widgets/task_screen.dart';
+import '../features/debt/widgets/debt_screen.dart';
 import 'settings_screen.dart';
 import 'stats_screen.dart';
-import 'today_screen.dart';
-import '../misc/colors.dart';
+import '../features/timer/widgets/today_screen.dart';
+import '../shared/UI/colors.dart';
 
 class MainScreen extends StatefulWidget {
 

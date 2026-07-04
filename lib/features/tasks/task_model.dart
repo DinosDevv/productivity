@@ -12,7 +12,7 @@ class TaskModel extends HiveObject{
   @HiveField(2)
   final int endTime;
   @HiveField(3)
-  final bool isDone;
+  bool isDone;
 
   TaskModel({
     required this.taskName,

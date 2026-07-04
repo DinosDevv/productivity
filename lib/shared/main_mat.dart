@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../misc/colors.dart';
+import '../shared/UI/colors.dart';
 import '../screens/main_screen.dart';
-import '../controllers/timer_controller.dart';
-import '../misc/task_model.dart';
+import '../features/timer/controllers/task_timer.dart';
+import '../features/tasks/task_model.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -28,7 +28,7 @@ class Main extends StatelessWidget {
           task: TaskModel(
             taskName: '0',
             startTime: 0,
-            endTime: 0
+            endTime: 10,
           ),
         ),
 

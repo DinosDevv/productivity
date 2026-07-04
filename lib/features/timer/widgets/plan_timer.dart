@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/controllers/timer_controller.dart';
+import 'package:productivity/features/timer/controllers/task_timer.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 class PlanTimer extends StatefulWidget {

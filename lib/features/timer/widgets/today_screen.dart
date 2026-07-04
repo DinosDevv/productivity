@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/controllers/timer_controller.dart';
-import 'package:productivity/widgets/buttons/skip_btn.dart';
-import 'package:productivity/widgets/plan_timer.dart';
+import 'package:productivity/features/timer/controllers/task_timer.dart';
+import 'package:productivity/shared/UI/buttons/skip_btn.dart';
+import 'package:productivity/features/timer/widgets/plan_timer.dart';
 import 'package:timer_widget/timer_widget.dart';
 
 class TodayScreen extends StatelessWidget {
@@ -19,6 +19,11 @@ class TodayScreen extends StatelessWidget {
           children: [
             PlanTimer(timerController: timerController),
             SkipBtn(),
+            FloatingActionButton(
+              onPressed: () {
+
+              }
+            ), 
           ],
         )
       ),

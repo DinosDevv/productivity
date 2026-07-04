@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/setting.dart';
+import '../features/settings/widgets/setting.dart';
+import '../features/storage/hive_functions.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -11,6 +12,12 @@ class SettingsScreen extends StatelessWidget {
         Column(
           children: [
             Setting(settingName: "Setting 1"),
+            ElevatedButton(
+              onPressed: () {
+                HiveFunctions.taskBox.clear();
+              }, 
+              child: Text('Delete all tasks!'),
+            ),
           ],
         ),
       ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/misc/task_model.dart';
-import 'widgets/main_mat.dart';
+import 'package:productivity/features/tasks/task_model.dart';
+import 'shared/main_mat.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
