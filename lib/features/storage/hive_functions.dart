@@ -1,7 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import '../tasks/task_model.dart';
 
-
 class HiveFunctions {
   static Box<TaskModel> get taskBox =>
     Hive.box<TaskModel>('tasks');

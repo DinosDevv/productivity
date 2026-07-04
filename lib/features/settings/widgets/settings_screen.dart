@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../features/settings/widgets/setting.dart';
-import '../features/storage/hive_functions.dart';
+import 'setting.dart';
+import '../../storage/hive_functions.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

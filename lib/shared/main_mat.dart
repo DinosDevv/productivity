@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../shared/UI/colors.dart';
-import '../screens/main_screen.dart';
+import 'UI/colors.dart';
+import 'main_screen.dart';
 import '../features/timer/controllers/task_timer.dart';
 import '../features/tasks/task_model.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:productivity/features/timer/controllers/task_timer.dart';
-import 'package:productivity/screens/main_screen.dart';
+import 'package:productivity/shared/main_screen.dart';
 import 'task.dart';
 import '../../storage/hive_functions.dart';
 import '../task_model.dart';
-import '../../../misc/helpers.dart';
+import '../../../shared/functions/helpers.dart';
 
 class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
