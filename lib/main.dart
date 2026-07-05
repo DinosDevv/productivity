@@ -10,6 +10,7 @@ void main() async {
 
   Hive.registerAdapter(TaskModelAdapter());
 
+
   await Hive.openBox<TaskModel>('tasks');
 
   runApp(const Main());

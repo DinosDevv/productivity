@@ -41,8 +41,8 @@ class TimerController extends ChangeNotifier{
           remainingSeconds--;
           notifyListeners();
         } else {
-          task.isDone = true;
-          HiveFunctions.updateTask(task.id, task);
+          task.isDone = true; 
+          HiveFunctions.updateTask(task);
         }    
       } 
     );

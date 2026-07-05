@@ -28,14 +28,16 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
   void write(BinaryWriter writer, TaskModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.taskName)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.startTime)
+      ..write(obj.taskName)
       ..writeByte(2)
-      ..write(obj.endTime)
+      ..write(obj.startTime)
       ..writeByte(3)
+      ..write(obj.endTime)
+      ..writeByte(4)
       ..write(obj.isDone);
   }
 

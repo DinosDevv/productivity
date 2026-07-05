@@ -3,7 +3,6 @@ import 'UI/colors.dart';
 import 'main_screen.dart';
 import '../features/timer/controllers/task_timer.dart';
 import '../features/tasks/task_model.dart';
-import '../features/storage/hive_functions.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -27,7 +26,7 @@ class Main extends StatelessWidget {
         index: 0, 
         timerController: TimerController(
           task: TaskModel(
-            id: 1563242,
+            id: 1560,
             taskName: '0',
             startTime: 0,
             endTime: 10,

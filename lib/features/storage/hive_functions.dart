@@ -7,28 +7,31 @@ class HiveFunctions {
 
   // Adds a TaskModel to the HiveBox
   static void addTask(TaskModel task) {
-    
-    taskBox.add(task);
-    for(int i = 0; i < taskBox.values.toList().length; i++) {
-      print(taskBox.values.toList()[i]);
-    }
+    taskBox.put(task.id, task);
   }
   static int getId() {
-    final ids = taskBox.values.map((e) => e.id).toSet();
+    final ids = taskBox.keys.cast<int>().toSet();
+
     int id = 0;
-
-    // Makes sure an original ID is being generated despite previous tasks being completed
-
     while (ids.contains(id)) {
       id++;
     }
 
     return id;
   }
-  static void updateTask(int id, TaskModel task) {
-    taskBox.put(id, task);
+  static void updateTask(TaskModel task) {
+    taskBox.put(task.id, task);
   }
-  static void deleteTask(int id) {
-    taskBox.delete(id);
+  static void deleteTask(TaskModel task) async {
+    print(task.id);
+    printBox(taskBox);
+    await taskBox.delete(task.id);
+    printBox(taskBox);
+  }
+  static void printBox(Box box) {
+    print("Box content is: ");
+    for(int i = 0; i < box.values.toList().length; i++) {
+      print(box.values.toList()[i]);
+    }
   }
 }

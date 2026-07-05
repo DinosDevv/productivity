@@ -5,7 +5,7 @@ import 'package:productivity/shared/main_screen.dart';
 import 'task.dart';
 import '../../storage/hive_functions.dart';
 import '../task_model.dart';
-import '../../../shared/functions/helpers.dart';
+import 'task_dialog.dart';
 
 class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
@@ -15,66 +15,6 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-
-
-  void showAddTaskDialog() async {
-    final titleController = TextEditingController();
-    TimeOfDay? start;
-    TimeOfDay? end;
-
-    await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Add Task"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(controller: titleController),
-
-            TextButton(
-              onPressed: () async {
-                start = await showTimePicker(
-                  context: context, 
-                  initialTime: TimeOfDay.now(),
-                );
-              }, 
-              child: const Text("Pick Start time"),
-            ),
-            TextButton(
-              onPressed: () async {
-                end = await showTimePicker(
-                  context: context, 
-                  initialTime: TimeOfDay.now(),
-                );
-              }, 
-              child: const Text("Pick End time"),
-            ),
-
-          ],
-        ), 
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), 
-            child: const Text("Cancel")
-          ),
-          TextButton(
-            onPressed : () {              
-              if(start != null && end != null) {
-                final newTask = TaskModel(
-                  id: HiveFunctions.getId(),
-                  taskName: titleController.text, 
-                  startTime: Helpers.toMinutes(start!), 
-                  endTime:Helpers.toMinutes(end!)
-                );
-                HiveFunctions.addTask(newTask);
-              }
-              Navigator.pop(context);
-            },
-            child: const Text("Add"),  
-          ),
-        ],
-      ),
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,31 +34,34 @@ class _TaskScreenState extends State<TaskScreen> {
                   SizedBox(height: 12),
                   Task(
                     task: task, 
-                    onPressed: () {
-                      TimerController timerController = TimerController(task: task);
-                      timerController.start();
-                      
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(
-                          builder: (context) => MainScreen(
-                            index: 1, 
-                            timerController: timerController,
+                    onPressed:  ()  {
+                      if(!task.isDone) {
+                        TimerController timerController = TimerController(task: task);
+                        timerController.start();
+                        
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(
+                            builder: (context) => MainScreen(
+                              index: 1, 
+                              timerController: timerController,
+                            )
                           )
-                        )
-                      );
+                        );
+                      } else {
+                        HiveFunctions.deleteTask(task);
+                      }
                     },
-                  ),
+                  ),    
                 ],
               );
-            },  
+            },
           );
         },    
       ),
-      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showAddTaskDialog();
+          TaskDialog.showAddTaskDialog(context);
         },
         child: const Icon(Icons.add),
       ),
