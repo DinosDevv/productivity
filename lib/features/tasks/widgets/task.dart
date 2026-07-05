@@ -40,6 +40,7 @@ class _TaskState extends State<Task> {
                 ),
               ],
             ),   
+            // Checks if task is Done to change the icon
             if(task.isDone) Icon(Icons.check_box_outlined) else Icon(Icons.check_box_outline_blank),
           ],
         ),

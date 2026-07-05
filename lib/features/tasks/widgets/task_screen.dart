@@ -60,6 +60,7 @@ class _TaskScreenState extends State<TaskScreen> {
             onPressed : () {              
               if(start != null && end != null) {
                 final newTask = TaskModel(
+                  id: HiveFunctions.getId(),
                   taskName: titleController.text, 
                   startTime: Helpers.toMinutes(start!), 
                   endTime:Helpers.toMinutes(end!)
@@ -95,7 +96,6 @@ class _TaskScreenState extends State<TaskScreen> {
                     task: task, 
                     onPressed: () {
                       TimerController timerController = TimerController(task: task);
-                      timerController.getRemainingSeconds();
                       timerController.start();
                       
                       Navigator.push(
@@ -111,12 +111,11 @@ class _TaskScreenState extends State<TaskScreen> {
                   ),
                 ],
               );
-            },
-            
+            },  
           );
-        },
-        
+        },    
       ),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showAddTaskDialog();

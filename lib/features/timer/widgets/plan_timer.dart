@@ -31,15 +31,14 @@ class _PlanTimerState extends State<PlanTimer> {
           backgroundColor: Colors.grey.shade300,
           circularStrokeCap: CircularStrokeCap.round,
           center: Text(
+
           // Motherfucker this is the most unreadable line in the whole world!!!!!11!
             '${(widget.timerController.remainingSeconds ~/ 3600).toString().padLeft(2, '0')}:${((widget.timerController.remainingSeconds % 3600) ~/ 60).toString().padLeft(2, '0')}:${(widget.timerController.remainingSeconds % 60).toString().padLeft(2, '0')}',
             style: TextStyle(
               fontSize: 30,
             )
           ),
-        );
-
-        
+        );        
       }
     );    
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:productivity/features/tasks/task_model.dart';
+import '../../storage/hive_functions.dart';
 
 class TimerController extends ChangeNotifier{
   TaskModel task;
@@ -12,27 +13,36 @@ class TimerController extends ChangeNotifier{
   Timer? timer;
   bool isPaused = false;
 
+
   void getRemainingSeconds() {
-    if((task.endTime - task.startTime) < 0) {
-      remainingSeconds = (task.startTime - task.endTime)*60 + 12 * 3600;
-    } else {
-      remainingSeconds = (task.endTime - task.startTime)*60;
+    int taskTime = task.endTime - task.startTime;
+    
+    /* 
+      Selecting the start/end time of a task is an absolute value of type: TimeOfDay, so if the user
+      were to select a big enough duration for a task, the app would think the duration is negative.
+      For this reason a check is done to format the time into the correct amount of seconds.
+    */
+
+    if(taskTime < 0) { 
+      taskTime += 24 * 60;
     }
+
+    remainingSeconds = taskTime * 60;
     startingSeconds = remainingSeconds;
   }
 
-
   void start() {
-    
+    getRemainingSeconds();
+
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (_) {
         if(remainingSeconds > 0 && !isPaused) {
-          print(remainingSeconds);
           remainingSeconds--;
           notifyListeners();
         } else {
           task.isDone = true;
+          HiveFunctions.updateTask(task.id, task);
         }    
       } 
     );

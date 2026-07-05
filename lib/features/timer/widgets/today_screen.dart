@@ -19,11 +19,6 @@ class TodayScreen extends StatelessWidget {
           children: [
             PlanTimer(timerController: timerController),
             SkipBtn(),
-            FloatingActionButton(
-              onPressed: () {
-
-              }
-            ), 
           ],
         )
       ),
