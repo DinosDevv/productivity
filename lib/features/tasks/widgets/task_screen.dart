@@ -21,7 +21,7 @@ class _TaskScreenState extends State<TaskScreen> {
       body: ValueListenableBuilder(
         valueListenable: Hive.box<TaskModel>('tasks').listenable(), 
         builder: (context, box, _) {
-          final tasks = box.values.toList();
+          final tasks = box.toMap().values.toList();
 
           return ListView.builder(
             padding: const EdgeInsets.all(16),
@@ -34,7 +34,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   SizedBox(height: 12),
                   Task(
                     task: task, 
-                    onPressed:  ()  {
+                    onPressed:  () async {
                       if(!task.isDone) {
                         TimerController timerController = TimerController(task: task);
                         timerController.start();
@@ -49,7 +49,11 @@ class _TaskScreenState extends State<TaskScreen> {
                           )
                         );
                       } else {
-                        HiveFunctions.deleteTask(task);
+                        
+                        await HiveFunctions.deleteTask(task);
+                        if (context.mounted) {
+                          (context as Element).markNeedsBuild();
+                        }
                       }
                     },
                   ),    

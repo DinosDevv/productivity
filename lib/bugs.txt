@@ -4,6 +4,10 @@
   - You can submit a task with a duration of 0 seconds
   - You can submit a task with no name
   
-- For now, finishing a task marks it as done but doesn't get saved in local db -> Need to update the initial box, maybe add a key to all the objects
+- For now, finishing a task marks it as done but doesn't get saved in local db -> Need to update the initial box, maybe add a key to all the objects -> I think it does ??
 
 - Accessing Today Screen crashes the app because there is no task probably
+
+- SERIOUS BUG CAN'T DELETE DONE TASK!!!1!
+
+- Need to organize code, I don't understand fucking shite

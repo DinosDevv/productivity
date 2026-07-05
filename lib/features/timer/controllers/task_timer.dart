@@ -47,6 +47,9 @@ class TimerController extends ChangeNotifier{
       } 
     );
   }
+  void stop() {
+    timer?.cancel();
+  }
   void pause() {
     if(isPaused) isPaused = false;
     if(!isPaused) isPaused = true;

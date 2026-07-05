@@ -22,7 +22,8 @@ class HiveFunctions {
   static void updateTask(TaskModel task) {
     taskBox.put(task.id, task);
   }
-  static void deleteTask(TaskModel task) async {
+  static Future <void> deleteTask(TaskModel task) async {
+    print(task.isDone);
     print(task.id);
     printBox(taskBox);
     await taskBox.delete(task.id);
