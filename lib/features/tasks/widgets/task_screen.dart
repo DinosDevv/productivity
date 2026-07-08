@@ -36,7 +36,8 @@ class _TaskScreenState extends State<TaskScreen> {
                     task: task, 
                     onPressed:  () async {
                       if(!task.isDone) {
-                        TimerController timerController = TimerController(task: task);
+                        TimerController timerController = TimerController();
+                        timerController.setTask(task);
                         timerController.start();
                         
                         Navigator.push(
@@ -44,7 +45,6 @@ class _TaskScreenState extends State<TaskScreen> {
                           MaterialPageRoute(
                             builder: (context) => MainScreen(
                               index: 1, 
-                              timerController: timerController,
                             )
                           )
                         );

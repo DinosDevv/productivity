@@ -3,12 +3,7 @@ import 'package:productivity/features/timer/controllers/task_timer.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 class PlanTimer extends StatefulWidget {
-  final TimerController timerController;
-
-  const PlanTimer({
-    super.key,
-    required this.timerController,
-  });
+  const PlanTimer({super.key });
   
   @override
   State<PlanTimer> createState() => _PlanTimerState();
@@ -19,12 +14,11 @@ class _PlanTimerState extends State<PlanTimer> {
   @override
   Widget build(BuildContext context) {
     
-
     return ListenableBuilder(
-      listenable: widget.timerController,
+      listenable: TimerController(), // Oh shit
       builder: (context, child) {
         return CircularPercentIndicator(
-          percent: widget.timerController.percentage,
+          percent: TimerController.getPercentage(),
           radius: 100,
           lineWidth: 10,
           progressColor: Colors.blue,
@@ -33,7 +27,7 @@ class _PlanTimerState extends State<PlanTimer> {
           center: Text(
 
           // Motherfucker this is the most unreadable line in the whole world!!!!!11!
-            '${(widget.timerController.remainingSeconds ~/ 3600).toString().padLeft(2, '0')}:${((widget.timerController.remainingSeconds % 3600) ~/ 60).toString().padLeft(2, '0')}:${(widget.timerController.remainingSeconds % 60).toString().padLeft(2, '0')}',
+            '${(TimerController.remainingSeconds ~/ 3600).toString().padLeft(2, '0')}:${((TimerController.remainingSeconds % 3600) ~/ 60).toString().padLeft(2, '0')}:${(TimerController.remainingSeconds % 60).toString().padLeft(2, '0')}',
             style: TextStyle(
               fontSize: 30,
             )

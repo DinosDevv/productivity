@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/features/timer/controllers/task_timer.dart';
 
 class SkipBtn extends StatefulWidget {
-  const SkipBtn({super.key, required this.tc});
+  const SkipBtn({super.key});
 
-  final TimerController tc;
 
   @override
   State<SkipBtn> createState() => _SkipBtnState();
@@ -18,7 +16,6 @@ class _SkipBtnState extends State<SkipBtn> {
         foregroundColor: WidgetStateProperty.all<Color>(Colors.red),
       ),
       onPressed: () {
-        print("Added debt of ${widget.tc.remainingSeconds}");
       },
       child: Text('Skip & Add as Debt'),
     );

@@ -1,4 +1,5 @@
 - Navigating between screens through MainScreen requires minutes/task even when navigating somewhere other than the TodayScreen
+  -> Made it a singleton standalone but now doesn't update unless tabs switched
 - Need to add Theme -> Delete misc/colors.dart
 - Submitting a task has issues:
   - You can submit a task with a duration of 0 seconds
@@ -7,6 +8,7 @@
 - For now, finishing a task marks it as done but doesn't get saved in local db -> Need to update the initial box, maybe add a key to all the objects -> I think it does ??
 
 - Accessing Today Screen crashes the app because there is no task probably
+  -> I think fixed, not sure
 
 - SERIOUS BUG CAN'T DELETE DONE TASK!!!1!
 
