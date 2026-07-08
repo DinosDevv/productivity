@@ -13,3 +13,4 @@
 - SERIOUS BUG CAN'T DELETE DONE TASK!!!1!
 
 - Need to organize code, I don't understand fucking shite
+  -> Code is somewhat good now!

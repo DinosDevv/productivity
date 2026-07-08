@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:productivity/features/timer/controllers/task_timer.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
+import '../../../shared/functions/helpers.dart';
 
 class PlanTimer extends StatefulWidget {
   const PlanTimer({super.key });
@@ -25,9 +26,7 @@ class _PlanTimerState extends State<PlanTimer> {
           backgroundColor: Colors.grey.shade300,
           circularStrokeCap: CircularStrokeCap.round,
           center: Text(
-
-          // Motherfucker this is the most unreadable line in the whole world!!!!!11!
-            '${(TimerController.remainingSeconds ~/ 3600).toString().padLeft(2, '0')}:${((TimerController.remainingSeconds % 3600) ~/ 60).toString().padLeft(2, '0')}:${(TimerController.remainingSeconds % 60).toString().padLeft(2, '0')}',
+            Helpers.formatTime(TimerController.remainingSeconds),
             style: TextStyle(
               fontSize: 30,
             )

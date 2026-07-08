@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class SkipBtn extends StatefulWidget {
   const SkipBtn({super.key});
 
-
   @override
   State<SkipBtn> createState() => _SkipBtnState();
 }

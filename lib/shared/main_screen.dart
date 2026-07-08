@@ -8,12 +8,9 @@ import 'UI/colors.dart';
 
 class MainScreen extends StatefulWidget {
 
-  final int index;
-
-  // This is gonna be spaghetti code and I will probably need to fix it soon
+  final int index; // Index of the current widget(screen)
 
   const MainScreen({super.key, required this.index});
-
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -21,7 +18,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late int currentPageIndex = widget.index;
-
 
   @override
   Widget build(BuildContext context) {
