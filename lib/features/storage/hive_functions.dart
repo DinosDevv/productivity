@@ -4,7 +4,6 @@ import '../tasks/task_model.dart';
 class HiveFunctions {
   static Box<TaskModel> get taskBox =>
     Hive.box<TaskModel>('tasks');
-
   // Adds a TaskModel to the HiveBox
   static void addTask(TaskModel task) {
     taskBox.put(task.id, task);

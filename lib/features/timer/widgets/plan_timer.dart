@@ -24,7 +24,7 @@ class _PlanTimerState extends State<PlanTimer> {
       listenable: widget.timerController,
       builder: (context, child) {
         return CircularPercentIndicator(
-          percent: widget.timerController.remainingSeconds / widget.timerController.startingSeconds,
+          percent: widget.timerController.percentage,
           radius: 100,
           lineWidth: 10,
           progressColor: Colors.blue,

@@ -48,8 +48,7 @@ class _TaskScreenState extends State<TaskScreen> {
                             )
                           )
                         );
-                      } else {
-                        
+                      } else { 
                         await HiveFunctions.deleteTask(task);
                         if (context.mounted) {
                           (context as Element).markNeedsBuild();

@@ -18,7 +18,7 @@ class TodayScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             PlanTimer(timerController: timerController),
-            SkipBtn(),
+            SkipBtn(tc: timerController),
           ],
         )
       ),

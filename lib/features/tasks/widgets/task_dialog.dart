@@ -39,7 +39,6 @@ class TaskDialog extends StatelessWidget {
               }, 
               child: const Text("Pick End time"),
             ),
-
           ],
         ), 
         actions: [
@@ -65,12 +64,8 @@ class TaskDialog extends StatelessWidget {
       ),
     );
   }
-
-
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
 }
-
-

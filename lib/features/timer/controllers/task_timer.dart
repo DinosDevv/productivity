@@ -10,6 +10,9 @@ class TimerController extends ChangeNotifier{
   TimerController({required this.task});
 
   int remainingSeconds = 0, startingSeconds = 0;
+  
+  double percentage = 0;
+
   Timer? timer;
   bool isPaused = false;
 
@@ -17,6 +20,7 @@ class TimerController extends ChangeNotifier{
   void getRemainingSeconds() {
     int taskTime = task.endTime - task.startTime;
     
+
     /* 
       Selecting the start/end time of a task is an absolute value of type: TimeOfDay, so if the user
       were to select a big enough duration for a task, the app would think the duration is negative.
@@ -29,6 +33,19 @@ class TimerController extends ChangeNotifier{
 
     remainingSeconds = taskTime * 60;
     startingSeconds = remainingSeconds;
+    
+    /*
+      Percentage is 0 unless a task is passed onto the controller where the new percentage is calculated
+      by remainingSeconds/startingSeconds. This prevents the today_screen from crashing because of the 
+      Timer indicator
+    */
+
+    if(startingSeconds == 0) {
+      percentage = 0;
+    } else {
+      percentage = remainingSeconds/startingSeconds;
+    }
+    print(percentage);
   }
 
   void start() {
@@ -54,5 +71,4 @@ class TimerController extends ChangeNotifier{
     if(isPaused) isPaused = false;
     if(!isPaused) isPaused = true;
   }
-
 }
