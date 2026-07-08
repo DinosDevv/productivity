@@ -36,7 +36,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     task: task, 
                     onPressed:  () async {
                       if(!task.isDone) {
-                        TimerController timerController = TimerController();
+                        TimerController timerController = TimerController.instance;
                         timerController.setTask(task);
                         timerController.start();
                         

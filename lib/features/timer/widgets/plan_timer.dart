@@ -16,17 +16,17 @@ class _PlanTimerState extends State<PlanTimer> {
   Widget build(BuildContext context) {
     
     return ListenableBuilder(
-      listenable: TimerController(), // Oh shit
+      listenable: TimerController.instance,
       builder: (context, child) {
         return CircularPercentIndicator(
-          percent: TimerController.getPercentage(),
+          percent: TimerController.instance.getPercentage(),
           radius: 100,
           lineWidth: 10,
           progressColor: Colors.blue,
           backgroundColor: Colors.grey.shade300,
           circularStrokeCap: CircularStrokeCap.round,
           center: Text(
-            Helpers.formatTime(TimerController.remainingSeconds),
+            Helpers.formatTime(TimerController.instance.remainingSeconds),
             style: TextStyle(
               fontSize: 30,
             )

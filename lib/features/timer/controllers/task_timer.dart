@@ -6,28 +6,16 @@ import '../../storage/hive_functions.dart';
 
 class TimerController extends ChangeNotifier{
 
-  /*
-    Need to create getters and setters to be able to access the information of the timerController
-    instead of passing it around!! The only time a TimerController object is created/accessed will have to be
-    to be "tied" with a task. Other than that, interactions should be possible through getter/setter functions
-  */
+  TimerController._(); // Makes the TimerController private
+  static final TimerController instance = TimerController._(); // Only object, files can access this, not the original
 
-
-
-  TimerController();
-
-  static int remainingSeconds = 0, startingSeconds = 0;
-  static TaskModel task = TaskModel(
-    id: 1500,
-    taskName: "nullTask",
-    startTime: 1,
-    endTime: 1,
-  );
+  int remainingSeconds = 0, startingSeconds = 0;
+  TaskModel? task;
   
   Timer? timer;
   bool isPaused = false;
 
-  static double getPercentage () {
+  double getPercentage () {
     /* 
       Assuming .start() has been called, remainingSeconds, startingSeconds are probably already set
       so I can probably just calculate the percentage here
@@ -55,7 +43,14 @@ class TimerController extends ChangeNotifier{
   }
 
   void getRemainingSeconds() { // This function acts as a setter
-    int taskTime = task.endTime - task.startTime;
+    
+    /*
+      Basically Checks whether task is null before 'promoting' it
+    */
+
+    final t = task; // final here ensures that because t is set to a task, it cannot be changed later and therefore is able to be promoted
+    if(t == null) return;
+    int taskTime = t.endTime - t.startTime;
     
     /* 
       Selecting the start/end time of a task is an absolute value of type: TimeOfDay, so if the user
@@ -77,6 +72,14 @@ class TimerController extends ChangeNotifier{
   */
 
   void start() {
+
+    /*
+      Again the same null check
+    */
+
+    final t = task;
+    if(t == null) return;
+
     getRemainingSeconds(); 
 
     timer = Timer.periodic(
@@ -84,10 +87,10 @@ class TimerController extends ChangeNotifier{
       (_) {
         if(remainingSeconds > 0 && !isPaused) {
           remainingSeconds--;
-          notifyListeners(); // Doesn't notify I'm afraid, maybe add listenable TimerController.start()???
+          notifyListeners();
         } else {
-          task.isDone = true; 
-          HiveFunctions.updateTask(task);
+          t.isDone = true; 
+          HiveFunctions.updateTask(t);
         }    
       } 
     );

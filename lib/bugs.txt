@@ -1,16 +1,16 @@
-- Navigating between screens through MainScreen requires minutes/task even when navigating somewhere other than the TodayScreen
-  -> Made it a singleton standalone but now doesn't update unless tabs switched
-- Need to add Theme -> Delete misc/colors.dart
-- Submitting a task has issues:
-  - You can submit a task with a duration of 0 seconds
-  - You can submit a task with no name
-  
-- For now, finishing a task marks it as done but doesn't get saved in local db -> Need to update the initial box, maybe add a key to all the objects -> I think it does ??
+OPEN BUGS
+- Timer never stops at 0: the else branch in start() fires every second forever and re-saves isDone=true to Hive on every tick -> cancel the timer when remainingSeconds hits 0 and notify once
+- pause() always ends up true -> should be a single isPaused = !isPaused
+- Timers/controllers are never disposed (memory + battery leak)
+- Can't delete a done task
+- Task submission has no validation: can submit with 0 duration or no name
 
-- Accessing Today Screen crashes the app because there is no task probably
-  -> I think fixed, not sure
+ARCHITECTURE / TODO
+- Navigation hack: tapping a task pushes a whole new MainScreen just to switch tab -> switch the tab index via shared state instead
+- Add a real Theme, remove hardcoded colors in shared/UI/colors.dart
+- Put task storage behind a repository instead of touching Hive/HiveFunctions directly from widgets
+- Replace print() debugging in hive_functions.dart with real logging
 
-- SERIOUS BUG CAN'T DELETE DONE TASK!!!1!
-
-- Need to organize code, I don't understand fucking shite
-  -> Code is somewhat good now!
+FIXED
+- Timer indicator not updating until tabs were switched -> TimerController is now a true singleton, so the same object ticks and is listened to
+- Today Screen crash when no task was set -> getPercentage() safely returns 0 when startingSeconds == 0, and task is now nullable
