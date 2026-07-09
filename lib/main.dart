@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:productivity/features/storage/task_repository.dart';
 import 'package:productivity/features/tasks/task_model.dart';
 import 'shared/main_mat.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
 
@@ -12,12 +12,9 @@ void main() async {
 
   Hive.registerAdapter(TaskModelAdapter());
 
+  // Initialize all the Hive Boxes
 
-  await Hive.openBox<TaskModel>('tasks');
+  await Hive.openBox<TaskModel>(TaskRepository.boxName);
 
-  runApp(
-    ProviderScope(
-      child: Main(),
-    )
-  );
+  runApp(Main());
 }

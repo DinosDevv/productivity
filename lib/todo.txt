@@ -1,0 +1,23 @@
+OPEN BUGS
+- Timer never stops at 0: the else branch in start() fires every second forever. It now writes isDone=true to Hive on every tick AND rebuilds the task list every second -> cancel the timer when remainingSeconds hits 0 and notify once
+- pause() always ends up true -> should be a single isPaused = !isPaused
+- deleteTask() doesn't await/return HiveFunctions.deleteItem, so the `await` at the call site waits for nothing -> return or await the inner call
+- Timers/controllers are never disposed (memory + battery leak)
+- Task submission has no validation: can submit with 0 duration or no name
+
+CLEANUP
+- task_screen: the markNeedsBuild() hack is redundant now that ValueListenableBuilder rebuilds on box change -> remove it
+- HiveFunctions: updateBox (unused + re-keys by index), updateTaskStorage (empty), printContent (logs box name, not contents) -> remove or finish
+- taskBox getter hardcodes 'tasks' -> reuse TaskRepository.boxName
+- TaskRepository: top comments still mention a "local runtime list" that no longer exists -> update them
+- addToBox comment "the 0 needs to be changed" is stale (takes an id now)
+
+ARCHITECTURE / TODO
+- UI still reads Hive directly (task_screen line 22) -> expose reads/listenable through TaskRepository too, so widgets never touch Hive
+- Navigation hack: tapping a task pushes a whole new MainScreen just to switch tab -> switch the tab index via shared state instead
+- Add a real Theme, remove hardcoded colors in shared/UI/colors.dart
+
+DONE
+- TaskRepository is now a single source of truth over Hive (no parallel list), instance-based via .instance
+- HiveFunctions made generic (<T>) and lint-free
+- TimerController is a true singleton; the timer UI updates live

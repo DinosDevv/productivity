@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:productivity/features/storage/task_repository.dart';
 import 'package:productivity/features/timer/controllers/task_timer.dart';
 import 'package:productivity/shared/main_screen.dart';
 import 'task.dart';
-import '../../storage/hive_functions.dart';
 import '../task_model.dart';
 import 'task_dialog.dart';
 
@@ -49,10 +49,7 @@ class _TaskScreenState extends State<TaskScreen> {
                           )
                         );
                       } else { 
-                        await HiveFunctions.deleteTask(task);
-                        if (context.mounted) {
-                          (context as Element).markNeedsBuild();
-                        }
+                        await TaskRepository.instance.deleteTask(task);
                       }
                     },
                   ),    

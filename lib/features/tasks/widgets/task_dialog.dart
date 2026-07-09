@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productivity/features/storage/task_repository.dart';
 import '../../../shared/functions/helpers.dart';
 import '../../storage/hive_functions.dart';
 import '../task_model.dart';
@@ -54,7 +55,7 @@ class TaskDialog extends StatelessWidget {
                   startTime: Helpers.toMinutes(start!), 
                   endTime:Helpers.toMinutes(end!)
                 );
-                HiveFunctions.addTask(newTask);
+                TaskRepository.instance.saveTask(newTask);
               }
               Navigator.pop(context);
             },

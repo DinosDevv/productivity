@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:productivity/features/storage/task_repository.dart';
 import 'package:productivity/features/tasks/task_model.dart';
-import '../../storage/hive_functions.dart';
 
 class TimerController extends ChangeNotifier{
 
@@ -23,7 +23,7 @@ class TimerController extends ChangeNotifier{
 
     double percentage;
 
-    /*
+    /*  
       Percentage is 0 unless a task is passed onto the controller where the new percentage is calculated
       by remainingSeconds/startingSeconds. This prevents the today_screen from crashing because of the 
       Timer indicator
@@ -90,7 +90,7 @@ class TimerController extends ChangeNotifier{
           notifyListeners();
         } else {
           t.isDone = true; 
-          HiveFunctions.updateTask(t);
+          TaskRepository.instance.updateTask(t);
         }    
       } 
     );
