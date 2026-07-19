@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:productivity/shared/UI/colors.dart';
 
 class Setting extends StatelessWidget {
   final String _settingName;
 
+  // A private field-formal still exposes `settingName:` (no underscore) to callers.
   const Setting({super.key, required this._settingName});
-
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: taskColor,
-        borderRadius: BorderRadius.circular(15)
+    return Card(
+      child: ListTile(
+        title: Text(_settingName),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () {},
       ),
-      child: Text(_settingName),
     );
   }
 }

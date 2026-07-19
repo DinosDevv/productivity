@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SkipBtn extends StatefulWidget {
+class SkipBtn extends StatelessWidget {
   const SkipBtn({super.key});
 
   @override
-  State<SkipBtn> createState() => _SkipBtnState();
-}
-
-class _SkipBtnState extends State<SkipBtn> {
-  @override
   Widget build(BuildContext context) {
-    return TextButton(
-        style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.all<Color>(Colors.red),
+    final scheme = Theme.of(context).colorScheme;
+
+    return TextButton.icon(
+      style: TextButton.styleFrom(
+        foregroundColor: scheme.error,
       ),
       onPressed: () {
+        // Need to navigate to /debt
       },
-      child: Text('Skip & Add as Debt'),
+      icon: const Icon(Icons.skip_next),
+      label: const Text('Skip & Add as Debt'),
     );
   }
-} 
+}

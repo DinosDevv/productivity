@@ -3,6 +3,7 @@ OPEN BUGS
 - pause() always ends up true -> should be a single isPaused = !isPaused
 - deleteTask() doesn't await/return HiveFunctions.deleteItem, so the `await` at the call site waits for nothing -> return or await the inner call
 - Timers/controllers are never disposed (memory + battery leak)
+  - Also a lot of timers can be active at the same time and the 
 - Task submission has no validation: can submit with 0 duration or no name
 
 CLEANUP
@@ -15,9 +16,10 @@ CLEANUP
 ARCHITECTURE / TODO
 - UI still reads Hive directly (task_screen line 22) -> expose reads/listenable through TaskRepository too, so widgets never touch Hive
 - Navigation hack: tapping a task pushes a whole new MainScreen just to switch tab -> switch the tab index via shared state instead
-- Add a real Theme, remove hardcoded colors in shared/UI/colors.dart
 
 DONE
 - TaskRepository is now a single source of truth over Hive (no parallel list), instance-based via .instance
 - HiveFunctions made generic (<T>) and lint-free
 - TimerController is a true singleton; the timer UI updates live
+- Central AppTheme (shared/UI/theme.dart) generates the whole palette from one seed; deleted colors.dart and all hardcoded colours
+- Task/Setting/PlanTimer/SkipBtn/TodayScreen converted to StatelessWidget (they held no state)

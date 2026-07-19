@@ -19,6 +19,7 @@ class TimerController extends ChangeNotifier{
     /* 
       Assuming .start() has been called, remainingSeconds, startingSeconds are probably already set
       so I can probably just calculate the percentage here
+      Im doing this to does it work? we will find out, I have to type into claude
     */
 
     double percentage;

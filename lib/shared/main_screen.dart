@@ -4,7 +4,6 @@ import '../features/debt/widgets/debt_screen.dart';
 import '../features/settings/widgets/settings_screen.dart';
 import '../features/stats/widgets/stats_screen.dart';
 import '../features/timer/widgets/today_screen.dart';
-import 'UI/colors.dart';
 
 class MainScreen extends StatefulWidget {
 
@@ -23,7 +22,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: appBarColor,
           title: Text("Productivity App"),
       ),
       bottomNavigationBar: NavigationBar(
@@ -32,7 +30,6 @@ class _MainScreenState extends State<MainScreen> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: appBarColor,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
