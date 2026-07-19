@@ -48,15 +48,18 @@ class TaskDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed : () {              
-              if(start != null && end != null) {
-                final newTask = TaskModel(
-                  id: HiveFunctions.getId(),
-                  taskName: titleController.text, 
-                  startTime: Helpers.toMinutes(start!), 
-                  endTime:Helpers.toMinutes(end!)
-                );
-                TaskRepository.instance.saveTask(newTask);
-              }
+              if(start != null && end != null) return;
+              if(titleController.text == "") return;
+              if((Helpers.toMinutes(start!) - Helpers.toMinutes(end!)) == 0) return;
+
+              final newTask = TaskModel(
+                id: HiveFunctions.getId(),
+                taskName: titleController.text, 
+                startTime: Helpers.toMinutes(start!), 
+                endTime:Helpers.toMinutes(end!)
+              );
+              TaskRepository.instance.saveTask(newTask);
+              
               Navigator.pop(context);
             },
             child: const Text("Add"),  

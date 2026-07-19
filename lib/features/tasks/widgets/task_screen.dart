@@ -19,7 +19,7 @@ class _TaskScreenState extends State<TaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<TaskModel>('tasks').listenable(), 
+        valueListenable: Hive.box<TaskModel>(TaskRepository.boxName).listenable(), // Maybe need to refer to the instance
         builder: (context, box, _) {
           final tasks = box.toMap().values.toList();
 

@@ -2,16 +2,13 @@ OPEN BUGS
 - Timer never stops at 0: the else branch in start() fires every second forever. It now writes isDone=true to Hive on every tick AND rebuilds the task list every second -> cancel the timer when remainingSeconds hits 0 and notify once
 - pause() always ends up true -> should be a single isPaused = !isPaused
 - deleteTask() doesn't await/return HiveFunctions.deleteItem, so the `await` at the call site waits for nothing -> return or await the inner call
-- Timers/controllers are never disposed (memory + battery leak)
-  - Also a lot of timers can be active at the same time and the 
+- Timer probably doesn't work if you select a different task
 - Task submission has no validation: can submit with 0 duration or no name
+  -> Fixed but there is no way for user to understand what's wrong
 
 CLEANUP
 - task_screen: the markNeedsBuild() hack is redundant now that ValueListenableBuilder rebuilds on box change -> remove it
 - HiveFunctions: updateBox (unused + re-keys by index), updateTaskStorage (empty), printContent (logs box name, not contents) -> remove or finish
-- taskBox getter hardcodes 'tasks' -> reuse TaskRepository.boxName
-- TaskRepository: top comments still mention a "local runtime list" that no longer exists -> update them
-- addToBox comment "the 0 needs to be changed" is stale (takes an id now)
 
 ARCHITECTURE / TODO
 - UI still reads Hive directly (task_screen line 22) -> expose reads/listenable through TaskRepository too, so widgets never touch Hive

@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import '../tasks/task_model.dart';
+import '../storage/task_repository.dart';
 
 class HiveFunctions {
   static void addToBox<T>(Box<T> b, T item, int i) {
-    b.put(i, item); // Obviously the 0 needs to be changed to a correct key/id
+    b.put(i, item);
   }
   static void updateItem<T>(Box<T> b, T item, int i) {
     b.put(i, item);
@@ -18,7 +19,7 @@ class HiveFunctions {
   }
 
   static Box<TaskModel> get taskBox =>
-    Hive.box<TaskModel>('tasks');
+    Hive.box<TaskModel>(TaskRepository.boxName);
   // Adds a TaskModel to the HiveBox
 
   static int getId() {

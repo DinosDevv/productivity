@@ -10,10 +10,6 @@ import 'hive_functions.dart';
 class TaskRepository {
   TaskRepository._(); // Makes it private
   static final TaskRepository instance = TaskRepository._();
-  /*
-    TaskRepository class works to handle all tasks in runtime before communicating with the
-    HiveFunctions class.
-  */
 
   static const boxName = 'tasks';  
   

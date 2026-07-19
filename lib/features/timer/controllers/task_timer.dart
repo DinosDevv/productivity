@@ -14,6 +14,7 @@ class TimerController extends ChangeNotifier{
   
   Timer? timer;
   bool isPaused = false;
+  bool isRunning = false; // To Check whether the instance is already running
 
   double getPercentage () {
     /* 
@@ -80,25 +81,34 @@ class TimerController extends ChangeNotifier{
 
     final t = task;
     if(t == null) return;
+    if(isRunning) return;
+    isRunning = true;
 
     getRemainingSeconds(); 
 
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (_) {
-        if(remainingSeconds > 0 && !isPaused) {
+        if(isPaused) return;
+        if(remainingSeconds > 0) {
           remainingSeconds--;
           notifyListeners();
         } else {
           t.isDone = true; 
+          stop();
           TaskRepository.instance.updateTask(t);
+          notifyListeners();
         }    
       } 
     );
   }
   void stop() {
     timer?.cancel();
+    isRunning = false;
   }
+  
+  // Currently doesn't do much, needs a pause button
+
   void pause() {
     if(isPaused) isPaused = false;
     if(!isPaused) isPaused = true;
