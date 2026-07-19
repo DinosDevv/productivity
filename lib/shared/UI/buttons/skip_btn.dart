@@ -15,6 +15,7 @@ class SkipBtn extends StatelessWidget {
       ),
       onPressed: () {
         int debtSeconds = TimerController.instance.remainingSeconds;
+        if(debtSeconds <= 0) return;
 
         DebtManager.instance.addDebt(debtSeconds); 
 
