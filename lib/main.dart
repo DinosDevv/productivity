@@ -15,6 +15,7 @@ void main() async {
   // Initialize all the Hive Boxes
 
   await Hive.openBox<TaskModel>(TaskRepository.boxName);
+  await Hive.openBox<int>('debt');
 
   runApp(Main());
 }

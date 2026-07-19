@@ -1,19 +1,23 @@
-int totalDebt = loadDebt(); // This will be saved in a hivebox (tracked in minutes or seconds? I will decide)
+import 'package:flutter/material.dart';
+import '../storage/hive_functions.dart';
 
-// These are the functions that communicate with the HiveFunctions Class
+class DebtManager extends ChangeNotifier {
+  DebtManager._();
+  static final DebtManager instance = DebtManager._();
 
-int loadDebt() {
-  return 0; // This will be the content of the storage box
-}
-int saveDebt() {
-  return 0;
-}
+  /*
+    Reads the HiveBox at index 0 where all debts are stored, fetches and returns the value.
+  */
 
-/*
-  I'm thinking of having a setDebt() function that hard-sets the debt duration 
-*/
-
-void setDebt(int m) {
-  totalDebt = m;
+  int loadDebt() => HiveFunctions.debtBox.get(0, defaultValue: 0)!;
+  
+  /*
+    Adds 'seconds' to the already stored debt saved at index 0.
+  */
+  
+  void addDebt(int seconds) {
+    HiveFunctions.addToBox(HiveFunctions.debtBox, loadDebt() + seconds, 0);
+    notifyListeners();
+  }
 }
 

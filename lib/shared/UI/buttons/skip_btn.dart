@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../features/timer/controllers/task_timer.dart';
+import '../../../features/debt/debt_manager.dart';
 
 class SkipBtn extends StatelessWidget {
   const SkipBtn({super.key});
@@ -12,7 +14,15 @@ class SkipBtn extends StatelessWidget {
         foregroundColor: scheme.error,
       ),
       onPressed: () {
-        // Need to navigate to /debt
+        int debtSeconds = TimerController.instance.remainingSeconds;
+
+        DebtManager.instance.addDebt(debtSeconds); 
+
+        /*
+        
+          DON'T FORGET THAT THIS BUTTON SHOULD STOP THE TIMER WHEN ADDING NEW DEBT.
+
+        */
       },
       icon: const Icon(Icons.skip_next),
       label: const Text('Skip & Add as Debt'),

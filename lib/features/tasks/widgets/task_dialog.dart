@@ -47,13 +47,16 @@ class TaskDialog extends StatelessWidget {
             child: const Text("Cancel")
           ),
           TextButton(
-            onPressed : () {              
-              if(start != null && end != null) return;
+            onPressed : () {          
+
+              // These exist to ensure that a valid task is created, before saved
+
+              if(start == null || end == null) return;
               if(titleController.text == "") return;
               if((Helpers.toMinutes(start!) - Helpers.toMinutes(end!)) == 0) return;
 
               final newTask = TaskModel(
-                id: HiveFunctions.getId(),
+                id: HiveFunctions.getId(HiveFunctions.taskBox),
                 taskName: titleController.text, 
                 startTime: Helpers.toMinutes(start!), 
                 endTime:Helpers.toMinutes(end!)

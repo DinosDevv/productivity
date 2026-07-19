@@ -20,10 +20,13 @@ class HiveFunctions {
 
   static Box<TaskModel> get taskBox =>
     Hive.box<TaskModel>(TaskRepository.boxName);
+
+  static Box<int> get debtBox =>
+    Hive.box<int>('debt');
   // Adds a TaskModel to the HiveBox
 
-  static int getId() {
-    final ids = taskBox.keys.cast<int>().toSet();
+  static int getId<T>(Box<T> b) {
+    final ids = b.keys.cast<int>().toSet();
 
     int id = 0;
     while (ids.contains(id)) {

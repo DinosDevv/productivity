@@ -7,7 +7,6 @@ OPEN BUGS
   -> Fixed but there is no way for user to understand what's wrong
 
 CLEANUP
-- task_screen: the markNeedsBuild() hack is redundant now that ValueListenableBuilder rebuilds on box change -> remove it
 - HiveFunctions: updateBox (unused + re-keys by index), updateTaskStorage (empty), printContent (logs box name, not contents) -> remove or finish
 
 ARCHITECTURE / TODO
