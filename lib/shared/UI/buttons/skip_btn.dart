@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../features/timer/controllers/task_timer.dart';
+import '../../../features/timer/controllers/timer_controller.dart';
 import '../../../features/debt/debt_manager.dart';
 
 class SkipBtn extends StatelessWidget {

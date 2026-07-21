@@ -19,5 +19,9 @@ class DebtManager extends ChangeNotifier {
     HiveFunctions.addToBox(HiveFunctions.debtBox, loadDebt() + seconds, 0);
     notifyListeners();
   }
+
+  void startTimer() {
+
+  }
 }
 

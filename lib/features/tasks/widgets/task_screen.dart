@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:productivity/features/storage/task_repository.dart';
-import 'package:productivity/features/timer/controllers/task_timer.dart';
+import 'package:productivity/features/tasks/task_controller.dart';
 import 'package:productivity/shared/main_screen.dart';
 import 'task.dart';
 import '../task_model.dart';
@@ -36,9 +36,9 @@ class _TaskScreenState extends State<TaskScreen> {
                     task: task, 
                     onPressed:  () async {
                       if(!task.isDone) {
-                        TimerController timerController = TimerController.instance;
-                        timerController.setTask(task);
-                        timerController.start();
+                        TaskController taskController = TaskController();
+                        taskController.setTask(task);
+                        taskController.triggerTime();
                         
                         Navigator.push(
                           context, 
