@@ -62,6 +62,8 @@ class TimerController extends ChangeNotifier{
   // Currently doesn't do much, needs a pause button
 
   void pause() {
+    // Pause doesn't work! It needs tweaking.
+
     if(isPaused) isPaused = false;
     if(!isPaused) isPaused = true;
   }

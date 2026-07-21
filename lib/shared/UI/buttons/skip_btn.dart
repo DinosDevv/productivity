@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../features/timer/controllers/timer_controller.dart';
-import '../../../features/debt/debt_manager.dart';
+import '../../../features/debt/debt_controller.dart';
 
 class SkipBtn extends StatelessWidget {
   const SkipBtn({super.key});
@@ -17,7 +17,7 @@ class SkipBtn extends StatelessWidget {
         int debtSeconds = TimerController.instance.remainingSeconds;
         if(debtSeconds <= 0) return;
 
-        DebtManager.instance.addDebt(debtSeconds); 
+        DebtController.instance.addDebt(debtSeconds); 
 
         /*
         
